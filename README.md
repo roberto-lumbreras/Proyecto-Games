@@ -19,3 +19,8 @@ Conecta4:
     Turnos: El juego se juega por turnos. El jugador 1 coloca la primera ficha, luego el turno pasa al jugador 2, y así sucesivamente.
     Colocación de Fichas: Al seleccionar una columna, la ficha "caerá" en el último hueco disponible, comenzando por arriba, simulando el comportamiento en un tablero físico.
     Finalización del Juego: Se puede finalizar o reiniciar el programa introduciendo "exit" o "restart" en la consola al finalizar una partida.
+
+    AHORCADO:
+
+    El objetivo del juego consiste en que el usuario adivine la palabra secreta generada por el programa de forma aleatoria, esta palabra será representada por guiones y cuando el programa se lo indique el jugador deberá ingresar la letra que desee de modo que le ayuden a adivinar. 
+    El jugador tendrá 8 intentos por lo que si las letras que vaya ingresando no forman parte de la palabra secreta el programá dibujará una parte del ahorcado, si al cabo de los 8 intentos no adivina la palabra se dibujará finalmente el ahorcado por completo y el juego habrá terminado, si por el contrario el jugador acierta y adivina la palabra secreta antes de acabarse los 8 intentos pues habrá ganado.
