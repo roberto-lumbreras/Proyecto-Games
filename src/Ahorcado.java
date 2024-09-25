@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Ahorcado {
     public static void main(String[] args) {
-    //
+    
         String palabraSecreta = obtenerPalabraSecreta(); // ya tengo la palabra secreta.
         char [] letrasGuiones = obtenerGuionesFromPalabra(palabraSecreta); // ya tengo guiones en en vez de letras.
         boolean gameOver = false;
@@ -11,10 +11,12 @@ public class Ahorcado {
         int intentos = 3; // contador para modificarse si no aciertas irá incrementandose.
 
         do{
+            mostrarAhorcado();
             System.out.println("Tienes " + intentos +" intentos");
             System.out.println(letrasGuiones);
             System.out.println("Introduce una letra");
-            char letra = lector.next().charAt(0);
+            //Recogemos la letra introducida por consola y la pasamos a mayúsculas para hacer la comparacion
+            char letra = lector.next().toUpperCase().charAt(0);
             boolean algunaLetraAcertada = false;
             for(int i=0; i<palabraSecreta.length(); i++) {
                 if(palabraSecreta.charAt(i) == letra) {
@@ -33,6 +35,7 @@ public class Ahorcado {
             else {
                 boolean gameWon = !hayGuiones(letrasGuiones);
                 if(gameWon) {
+                    System.out.println(palabraSecreta);
                     System.out.println("Well done, game won");
                     gameOver = true;
                 }
@@ -42,17 +45,19 @@ public class Ahorcado {
         lector.close();
     }
     
+    private static void mostrarAhorcado() {
+        
+    }
+
     static String obtenerPalabraSecreta(){
-        String [] palabras = {"Galaxia","Estrella","Luna"}; // array para definir las palabras secretas que serán 3 en este caso.
+        String [] palabras = {"GALAXIA","ESTRELLA","LUNA"}; // array para definir las palabras secretas que serán 3 en este caso.
         Random r = new Random(); // clase para generar un numero aleatorio que definirá la palabras secreta.
         int n = r.nextInt(palabras.length); // numero aleatorio=palabra secreta.
-        
         return palabras[n]; // la palabra secreta será aleatoria.
     }
 
     static char [] obtenerGuionesFromPalabra(String palabra){
         int nLetrasPalabraSecreta = palabra.length(); //Quiero que aparezcan guiones en lugar de la palabra. Primero inicializo una variable que me dirá la cantidad de letras de la palabra secreta
-
         char [] letrasGuiones = new char[nLetrasPalabraSecreta]; // y luego otra variable que permita aparecer guiones en lugar de letras.
 
         for(int i=0; i<letrasGuiones.length; i++){         // un bucle for para que la cantidad de guiones sean iguales a la cantidad de letras que tenga la palabra secreta.
