@@ -1,5 +1,4 @@
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,6 +10,7 @@ public class Conecta4 {
     static String input="";
     static int nColumna;
     static char gameMode;
+    static String turno;
 
     private static void introduceFicha(char c, int seleccionaColumna) {
         boolean fichaIntroducida=false;
@@ -140,12 +140,14 @@ public class Conecta4 {
             }
             while(!hayGanador()&&!tableroLleno()&&!input.equals("exit")&&!input.equals("restart")){
                 mostrarCuadricula();
+                turno="Jugador 1";
                 nColumna=seleccionaColumna(j1);
                 if(nColumna!=0){
                     introduceFicha(j1,nColumna);
                 }
                 if(!hayGanador()&&!tableroLleno()&&!input.equals("exit")&&!input.equals("restart")){
                     mostrarCuadricula();
+                    turno="Jugador 2";
                     if(gameMode=='m'){
                         nColumna=seleccionaColumna(j2);
                     }
@@ -160,7 +162,7 @@ public class Conecta4 {
                 }
             }
             if(hayGanador()){
-                System.out.println("Tenemos un ganador!!!");
+                System.out.println(turno+" es el ganador!!!");
                 mostrarCuadricula();
 
             }
@@ -177,7 +179,12 @@ public class Conecta4 {
 
     private static void mostrarCuadricula() {
         for (int i = 0;i<cuadricula.length;i++){
-            System.out.println(Arrays.toString(cuadricula[i]));
+            System.out.println("+---+---+---+---+---+---+---+");
+            for(int j=0;j<cuadricula[0].length;j++){
+                System.out.print("| "+cuadricula[i][j]+" ");
+            }
+            System.out.println("|");
         }
+        System.out.println("+---+---+---+---+---+---+---+");
     }
 }
