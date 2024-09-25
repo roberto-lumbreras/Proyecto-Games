@@ -22,5 +22,5 @@ Conecta4:
 
     AHORCADO:
 
-    El objetivo del juego consiste en que el usuario adivine la palabra secreta generada por el programa de forma aleatoria, esta palabra será representada por guiones y cuando el programa se lo indique el jugador deberá ingresar la letra que desee de modo que le ayuden a adivinar. 
+    El objetivo del juego consiste en que el usuario adivine la palabra secreta generada por el programa de forma aleatoria, esta palabra será representada por guiones y cuando el programa se lo indique el jugador deberá ingresar la letra que desee de modo que le ayuden a adivinar.
     El jugador tendrá 8 intentos por lo que si las letras que vaya ingresando no forman parte de la palabra secreta el programá dibujará una parte del ahorcado, si al cabo de los 8 intentos no adivina la palabra se dibujará finalmente el ahorcado por completo y el juego habrá terminado, si por el contrario el jugador acierta y adivina la palabra secreta antes de acabarse los 8 intentos pues habrá ganado.
