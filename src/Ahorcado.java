@@ -18,6 +18,11 @@ public class Ahorcado {
             System.out.println("Introduce una letra");
             //Recogemos la letra introducida por consola y la pasamos a mayúsculas para hacer la comparacion
             char letra = lector.next().toUpperCase().charAt(0);
+            while(!esValido(letra)){
+                System.out.println("Input no valido");
+                System.out.println("Introduce una letra");
+                letra = lector.next().toUpperCase().charAt(0);
+            }
             boolean algunaLetraAcertada = false;
             for(int i=0; i<palabraSecreta.length(); i++) {
                 if(palabraSecreta.charAt(i) == letra) { // para saber si la letra de la palabra secreta ubicada en i es igual a la letra introducida por el usuario
@@ -47,8 +52,19 @@ public class Ahorcado {
         lector.close();
     }
     
-    private static void mostrarAhorcado(int i) { //8 intentos en los que si falla saldrá una parte del muñeco.
-        switch (i) {
+    private static boolean esValido(char letra) {           //creamos un char array y condicionamos con if para admitir solo letras y evitar que se
+        boolean esta = false;                              // le reste intentos al jugador si ingresa un caracter de otro tipo.
+        char [] abecedario = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+        for(int i=0;i<26;i++){
+            if(letra==abecedario[i]){
+                esta = true;
+            }
+        }
+        return esta;
+    }
+
+    private static void mostrarAhorcado(int i) { // con switch se ejecutarán los diferentes bloques que representarán los cambios que se generen
+        switch (i) {                             //durante los 8 intentos que tiene el jugador, a medida que falle saldrá una parte del dibujo del ahorcado.
 
             case 7:
             System.out.println(" | ");
@@ -64,8 +80,8 @@ public class Ahorcado {
 
             }
             System.out.println("__________");
-            break;
-                            
+            break;                              //con break conseguimos que cuando el jugador acierte la letra, no se ejecute el switch y el juego continúe,
+                                                // de lo contrario los bloques con las diferentes partes del dibujo del ahorcado se generarían en el primer desacierto.
             case 6:
             System.out.println(" ---------------------");
             System.out.println(" | ");
@@ -223,10 +239,13 @@ public class Ahorcado {
         return letrasGuiones;
     }
 
-static boolean hayGuiones(char[] array) { // metodo para evaluar si un array que le paso tiene guion bajo.
+    static boolean hayGuiones(char[] array) { // metodo para evaluar si un array que le paso tiene guion bajo.
     for(char l:array) {
         if(l=='_')return true;
     }
     return false;
+    }
 }
-}
+    
+        
+    
