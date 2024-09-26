@@ -2,16 +2,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ahorcado {
+    static boolean gameOver=false;
     public static void main(String[] args) {
     
         String palabraSecreta = obtenerPalabraSecreta(); // ya tengo la palabra secreta.
         char [] letrasGuiones = obtenerGuionesFromPalabra(palabraSecreta); // ya tengo guiones en en vez de letras.
-        boolean gameOver = false;
         Scanner lector = new Scanner(System.in);
         int intentos = 8; // contador para modificarse si no aciertas irá incrementandose.
 
         do{
             mostrarAhorcado(intentos);
+            if(!gameOver){
             System.out.println("Tienes " + intentos +" intentos");
             System.out.println(letrasGuiones);
             System.out.println("Introduce una letra");
@@ -26,7 +27,7 @@ public class Ahorcado {
             }
             if(!algunaLetraAcertada) { // si no es igual pues decrementa los intentos y se dibuja una parte del muñeco
                 System.out.println("No has acertado");
-                --intentos;
+                intentos--;
                 if(intentos==-1){
                     System.out.println("Has perdido, agotaste todos los intentos"); // el juego terminará cuando el usuario agote sus intentos
                     gameOver = true;
@@ -39,6 +40,7 @@ public class Ahorcado {
                     System.out.println("Well done, game won");
                     gameOver = true;
                 }
+            }
             }
         }while(!gameOver);
         
@@ -199,6 +201,7 @@ public class Ahorcado {
             }
             System.out.println("__________");
             System.out.println("GAME OVER");
+            gameOver=true;
             break;
         }
                 
