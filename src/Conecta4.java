@@ -141,9 +141,10 @@ public class Conecta4 {
             System.out.println("Conecta 4 para ganar");
             //selecciona modo de juego solitario o multijugador
             do{
-                System.out.println("Seleccionar modo de juego [[S]Solitario|[M]Multijugador]");
-                gameMode=new Scanner(System.in).next().toLowerCase().charAt(0);
-            }while(gameMode!='s'&&gameMode!='m');
+                System.out.println("Seleccionar modo de juego [[s]Solitario|[m]Multijugador]");
+                input = new Scanner(System.in).next();
+                gameMode=input.charAt(0);
+            }while(gameMode!='s'&&gameMode!='m'&&!input.equals("exit")&&!input.equals("restart"));
             for(int i=0;i<cuadricula.length;i++){
                 for(int j = 0;j<cuadricula[0].length;j++){
                     cuadricula[i][j]=' ';
@@ -188,7 +189,7 @@ public class Conecta4 {
             }
             //al acabar tienes la opcion de salir y volver a jugar
             while(!input.equals("exit")&&!input.equals("restart")){
-                System.out.println("[exit/restart]");
+                System.out.println("[exit]|[restart]");
                 input = new Scanner(System.in).next();
             }
         }    

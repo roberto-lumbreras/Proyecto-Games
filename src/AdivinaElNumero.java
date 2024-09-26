@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class AdivinaElNumero{
     
-    //metodo para verificar que el input es un numero entre 0 y 100 o [exit/restart]
+    //metodo para verificar que el input es un numero entre 0 y 100
     public static boolean esValido(String s){
         int n;
         if(s.equals("exit")||s.equals("restart")){
@@ -31,15 +31,15 @@ public class AdivinaElNumero{
             input = "";
             //le pide input al usuario
             System.out.println("Juego de adivinar el numero");
-            System.out.println("Introduzca un numero entre 0 y 100 ['exit' para salir/'restart' para reiniciar]");
+            System.out.println("Introduzca un numero entre 0 y 100");
             //mientras no se introduzca restart, exit o se adivine el numero el programa seguira pidiendo numeros
             while(!input.equals(numeroSecreto)&&!input.equals("exit")&&!input.equals("restart")){
                 if(!input.equals("")){
-                    System.out.println("Prueba otra vez ['exit' para salir/'restart' para reiniciar]");
+                    System.out.println("Prueba otra vez");
                 }
                 input = new Scanner(System.in).next();
                 while(!esValido(input)){
-                    System.out.println("Input no valido. Introduzca un numero entre 0 y 100 ['exit' para salir/'restart' para reiniciar]");
+                    System.out.println("Input no valido. Introduzca un numero entre 0 y 100");
                     input = new Scanner(System.in).next();
                 }
                 if(!input.equals("exit")&&!input.equals("restart")){
@@ -52,10 +52,10 @@ public class AdivinaElNumero{
                         System.out.println("El numero secreto es mas grande");
                     }else{
                         //felicita al jugador por acertar el numero
-                        System.out.println("Felicidades, has acertado!! Numero de intentos "+numeroIntentos+" ['exit' para salir/'restart' para reiniciar]");
+                        System.out.println("Felicidades, has acertado!! Numero de intentos "+numeroIntentos);
                         input = new Scanner(System.in).next();
                         while(!(input.equals("exit")||input.equals("restart"))){
-                            System.out.println("Opcion no valida ['exit' para salir/'restart' para reiniciar]");
+                            System.out.println("Opcion no valida");
                             input = new Scanner(System.in).next();
                         }
                     }

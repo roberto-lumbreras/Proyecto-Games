@@ -33,17 +33,17 @@ public class Sudoku {
 
     public static void main(String[] args) {
         //mientras no se indique explictamente el juego continuará
-        while(!input.equals("E")){
+        while(!input.equals("exit")){
             input="";
             System.out.println("Resuelve el sudoku");
             //indicación de los posibles comandos ejecutables en cualquier momento del programa
-            System.out.println("[R]Restart|[E]Exit|[S]Solution");
+            System.out.println("Comandos -> [restart]|[exit]|[solution]");
             //se crea una copia de la matriz que sirve de la plantilla del ejercicio, el jugador escribirá en la copia
             for(int i=0;i<tablero.length;i++){
                 tablero[i]=Arrays.copyOf(plantilla[i], tablero.length);
             }
             //este bucle evalua las variables que pueden resultar en la finalizacion del juego
-            while(!Arrays.deepEquals(tablero, solucion)&&!input.equals("E")&&!input.equals("R")&&!input.equals("S")){
+            while(!Arrays.deepEquals(tablero, solucion)&&!input.equals("exit")&&!input.equals("restart")&&!input.equals("solution")){
                 introducirValor();
             }
             //manejo de los posibles resultados del programa
@@ -52,26 +52,26 @@ public class Sudoku {
                 System.out.println("Felicidades has completado el sudoku!");
                 mostrarCuadricula(tablero);
                 do { 
-                    System.out.println("[R]Restart|[E]Exit");
-                    input = new Scanner(System.in).next().toUpperCase();
-                } while (!input.equals("E")&&!input.equals("R"));
+                    System.out.println("[restart]|[exit]");
+                    input = new Scanner(System.in).next();
+                } while (!input.equals("exit")&&!input.equals("restart"));
             }
             //finaliza el proceso
-            if(input.equals("E")){
+            if(input.equals("exit")){
                 System.out.println("Fin del programa");
             }
             //comienza el bucle principal de nuevo
-            if(input.equals("R")){
+            if(input.equals("restart")){
                 System.out.println("Limpiando el tablero...");
             }
             //enseña la solucion
-            if(input.equals("S")){
+            if(input.equals("solution")){
                 System.out.println("--Solucion--");
                 mostrarCuadricula(solucion);
                 do { 
-                    System.out.println("[R]Restart|[E]Exit");
-                    input = new Scanner(System.in).next().toUpperCase();
-                } while (!input.equals("E")&&!input.equals("R"));
+                    System.out.println("[restart]|[exit]");
+                    input = new Scanner(System.in).next();
+                } while (!input.equals("exit")&&!input.equals("restart"));
             }
         }
         
@@ -90,20 +90,20 @@ public class Sudoku {
             mostrarCuadricula(tablero);
             //Pide al usuario que introduzca una fila y verifica si es valido
             System.out.println("Introducir fila");
-            input = new Scanner(System.in).next().toUpperCase();
-            if(esValido(input)&&!input.equals("0")&&!input.equals("E")&&!input.equals("R")&&!input.equals("S")){
+            input = new Scanner(System.in).next();
+            if(esValido(input)&&!input.equals("0")&&!input.equals("exit")&&!input.equals("restart")&&!input.equals("solution")){
                 fila=Integer.valueOf(input)-1;
                 //Pide al usuario que introduzca una fila y verifica si es valido
                 System.out.println("Introducir columna"); 
-                input = new Scanner(System.in).next().toUpperCase();
-                if(esValido(input)&&!input.equals("0")&&!input.equals("E")&&!input.equals("R")&&!input.equals("S")){
+                input = new Scanner(System.in).next();
+                if(esValido(input)&&!input.equals("0")&&!input.equals("exit")&&!input.equals("restart")&&!input.equals("solution")){
                     columna=Integer.valueOf(input)-1;
                     //verifica si la coordenada seleccionada se puede modificar en funcion de si viene dada por la plantilla
                     if(esModificable(fila, columna)){
                         //Pide al usuario que introduzca una valor y verifica si es valido
                         System.out.println("Introducir valor");
-                        input = new Scanner(System.in).next().toUpperCase();
-                        if(esValido(input)&&!input.equals("E")&&!input.equals("R")&&!input.equals("S")){
+                        input = new Scanner(System.in).next();
+                        if(esValido(input)&&!input.equals("exit")&&!input.equals("restart")&&!input.equals("solution")){
                             valor = Integer.valueOf(input);
                             //Comprueba que se cumplan las normas del sudoku y da feedback al jugador.Si se cumplen, introduce el valor en el tablero
                             if(check(fila, columna, valor)){
@@ -121,10 +121,10 @@ public class Sudoku {
             }
             //da feedback de por qué se ha interrumpido el flujo del juego[input no valido/no se cumplen las normas]
             //hasta que no se completen las condiciones del flujo este seguira pidiendo datos de insercion
-            if(!done&&!input.equals("E")&&!input.equals("R")&&!input.equals("S")){
+            if(!done&&!input.equals("exit")&&!input.equals("restart")&&!input.equals("solution")){
                 System.out.println(statement);
             }
-        }while(!done&&!input.equals("E")&&!input.equals("R")&&!input.equals("S"));
+        }while(!done&&!input.equals("exit")&&!input.equals("restart")&&!input.equals("solution"));
     }
 
     //abstraccion de asignacion de valor
@@ -164,7 +164,7 @@ public class Sudoku {
     //controla que no se produzcan errores por introduccion de datos por consola
     private static boolean esValido(String s) {
         int n;
-        if(s.equals("E")||s.equals("R")||s.equals("S")){
+        if(s.equals("exit")||s.equals("restart")||s.equals("solution")){
             return true;
         }else{
             try {
