@@ -8,7 +8,7 @@ Adivina el Número:
 
     Retroalimentación: Después de cada intento, el juego informa si el número ingresado es mayor o menor que el número secreto.
 
-    Finalización del Juego: Cuando el jugador adivina el número, el programa informa el número de intentos realizados y pregunta si desea jugar de nuevo ("restart") o finalizar el programa ("exit").
+    Finalización del Juego: Cuando el jugador adivina el número y el programa informa el número de intentos realizados. Se puede finalizar o reiniciar el programa introduciendo "exit" o "restart" en la consola.
 
 Conecta4:
 
@@ -28,7 +28,7 @@ Conecta4:
 
     Colocación de Fichas: Al seleccionar una columna, la ficha "caerá" en el último hueco disponible, comenzando por arriba, simulando el comportamiento en un tablero físico.
 
-    Finalización del Juego: Se puede finalizar o reiniciar el programa introduciendo "exit" o "restart" en la consola al finalizar una partida.
+    Finalización del Juego: Cuando un jugador conecta con exito 4 de sus fichas en linea o se llena el tablero. Se puede finalizar o reiniciar el programa introduciendo "exit" o "restart" en la consola.
 
 AHORCADO:
 
