@@ -182,7 +182,11 @@ public class Sudoku {
             System.out.println("  +---+---+---+---+---+---+---+---+---+");
             System.out.print((i+1)+" |");
             for(int j=0;j<board[0].length;j++){
-                System.out.print(" "+board[i][j]+" |");
+                if(plantilla[i][j]==0){
+                    System.out.print(" "+board[i][j]+" |");
+                }else{
+                    System.out.print(" "+"\u001B[32m"+board[i][j]+"\u001B[0m"+" |");
+                }
             }
             System.out.println("");
         }

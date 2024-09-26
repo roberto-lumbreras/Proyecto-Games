@@ -2,7 +2,7 @@ Como ejecutar el programa:
 
     Requisito: tener instalada la ultima version estable de Java.
     
-    Se puede verificar introduciendo el comando java --version en PowerShell.
+    Se puede verificar la instalacion introduciendo el comando java --version en PowerShell.
     
     Descargar el repositorio como archivo .zip (es necesario descomprimirlo despues) o utilizando git clone.
     

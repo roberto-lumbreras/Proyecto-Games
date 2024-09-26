@@ -1,11 +1,19 @@
+
+import java.util.Random;
+import java.util.Scanner;
+
 public class Ahorcado {
     static boolean gameOver=false;
+    static String input="";
+    static Scanner lector;
     public static void main(String[] args) {
-    
-        String palabraSecreta = obtenerPalabraSecreta(); // ya tengo la palabra secreta.
-        char [] letrasGuiones = obtenerGuionesFromPalabra(palabraSecreta); // ya tengo guiones en en vez de letras.
-        Scanner lector = new Scanner(System.in);
-        int intentos = 8; // contador para modificarse si no aciertas irá incrementandose.
+        while(!input.equals("exit")){
+            gameOver=false;
+            input = "";
+            String palabraSecreta = obtenerPalabraSecreta(); // ya tengo la palabra secreta.
+            char [] letrasGuiones = obtenerGuionesFromPalabra(palabraSecreta); // ya tengo guiones en en vez de letras.
+            lector = new Scanner(System.in);
+            int intentos = 8; // contador para modificarse si no aciertas irá incrementandose.
 
         do{
             mostrarAhorcado(intentos);
@@ -14,39 +22,49 @@ public class Ahorcado {
             System.out.println(letrasGuiones);
             System.out.println("Introduce una letra");
             //Recogemos la letra introducida por consola y la pasamos a mayúsculas para hacer la comparación
-            char letra = lector.next().toUpperCase().charAt(0);
-            while(!esValido(letra)){
-                System.out.println("Input no valido");
-                System.out.println("Introduce una letra");
-                letra = lector.next().toUpperCase().charAt(0);
-            }
-            boolean algunaLetraAcertada = false;
-            for(int i=0; i<palabraSecreta.length(); i++) {
-                if(palabraSecreta.charAt(i) == letra) { // para saber si la letra de la palabra secreta ubicada en i es igual a la letra introducida por el usuario
-                    letrasGuiones[i] = letra;
-                    algunaLetraAcertada = true; // si es igual continua el juego
+            input = lector.next();
+            char letra = input.toUpperCase().charAt(0);
+            if(!input.equals("restart")&&!input.equals("exit")){
+                while(!esValido(letra)){
+                    System.out.println("Input no valido");
+                    System.out.println("Introduce una letra");
+                    letra = lector.next().toUpperCase().charAt(0);
                 }
-            }
-            if(!algunaLetraAcertada) { // si no es igual pues decrementa los intentos y se dibuja una parte del ahorcado
-                System.out.println("No has acertado");
-                intentos--;
-                if(intentos==-1){
-                    System.out.println("Has perdido, agotaste todos los intentos"); // el juego terminará cuando el usuario agote sus intentos
-                    gameOver = true;
+                boolean algunaLetraAcertada = false;
+                for(int i=0; i<palabraSecreta.length(); i++) {
+                    if(palabraSecreta.charAt(i) == letra) { // para saber si la letra de la palabra secreta ubicada en i es igual a la letra introducida por el usuario
+                        letrasGuiones[i] = letra;
+                        algunaLetraAcertada = true; // si es igual continua el juego
+                    }
                 }
-            }
-            else {
-                boolean gameWon = !hayGuiones(letrasGuiones);
-                if(gameWon) {
-                    System.out.println(palabraSecreta);
-                    System.out.println("Well done, game won");
-                    gameOver = true;
+                if(!algunaLetraAcertada) { // si no es igual pues decrementa los intentos y se dibuja una parte del ahorcado
+                    System.out.println("No has acertado");
+                    intentos--;
+                    if(intentos==-1){
+                        System.out.println("Has perdido, agotaste todos los intentos"); // el juego terminará cuando el usuario agote sus intentos
+                        gameOver = true;
+                    }
                 }
+                else {
+                    boolean gameWon = !hayGuiones(letrasGuiones);
+                    if(gameWon) {
+                        System.out.println(palabraSecreta);
+                        System.out.println("Well done, game won");
+                        gameOver = true;
+                    }
+                }
+            
             }
             }
-        }while(!gameOver);
-        
-        lector.close();
+            
+        }while(!gameOver&&!input.equals("exit")&&!input.equals("restart"));
+            if(gameOver){
+                do{
+                    System.out.println("[exit]|[restart]");
+                    input = new Scanner(System.in).next();
+                }while(!input.equals("exit")&&!input.equals("restart"));
+            }
+        }
     }
     
     private static boolean esValido(char letra) {  //creamos un char array y condicionamos con if para admitir solo letras y evitar que se
