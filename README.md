@@ -1,3 +1,16 @@
+Como ejecutar el programa:
+
+Requisito: tener instalada la ultima version estable de Java. Se puede verificar introduciendo el comando java --version en PowerShell
+Descargar el repositorio como archivo .zip (es necesario descomprimirlo despues) o utilizando git clone
+Navegar hasta la carpeta descargada y entrar en la carpeta src
+copia la ruta de navegacion
+Abrir PowerShell y ejecutar los siguientes comandos sustituyendo <ruta> por la ruta que hayas copiado
+cd "<ruta>"
+javac *.java
+java Main.java
+
+
+
 Adivina el Número:
 
     Objetivo: Adivinar un número secreto entre 0 y 100 (ambos incluidos) que es generado aleatoriamente por el programa.
