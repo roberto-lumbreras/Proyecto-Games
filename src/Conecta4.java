@@ -3,15 +3,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Conecta4 {
+    //esta clase simula el juego de conecta4 en el terminal
     static char[][]cuadricula = new char[6][7];
-    
+    //ficha del jugador 1
     static final char j1 = 'O';
+    //ficha del jugador 2
     static final char j2 = 'X';
     static String input="";
     static int nColumna;
     static char gameMode;
     static String turno;
 
+    //metodo que introduce la ficha del jugador 'c' correspondiente en la columna seleccionada
     private static void introduceFicha(char c, int seleccionaColumna) {
         boolean fichaIntroducida=false;
         for(int i = 5;!fichaIntroducida;i--){
@@ -22,6 +25,7 @@ public class Conecta4 {
         } 
     }
 
+    //metodo para controlar los valores del input
     public static boolean esValido(String s){
         int n;
         try {
@@ -34,6 +38,7 @@ public class Conecta4 {
         }
     }
 
+    //metodo para pedir al usuario que introduzca el numero de columna donde quiere introducir la ficha
     public static int seleccionaColumna(char c){
         System.out.println("Seleccionar columna para introducir ficha "+c);
         input = new Scanner(System.in).next();
@@ -48,16 +53,18 @@ public class Conecta4 {
         return Integer.parseInt(input);
     }
 
+    //metodo que comprueba si el tablero esta lleno
     public static boolean tableroLleno(){
-        for(int i = 0;i<cuadricula.length;i++){
+        for(int i = 0;i<cuadricula[0].length;i++){
             if(cuadricula[0][i]!=j1
-            ||cuadricula[0][i]!=j2){
+            &&cuadricula[0][i]!=j2){
                 return false;
             }
         }
         return true; 
     }
 
+    //metodo para comprobar si hay cuatro fichas iguales en linea en el tablero
     public static boolean hayGanador(){
 
         // Comprobacion vertical
@@ -126,9 +133,13 @@ public class Conecta4 {
         return false;
     }
     public static void main(String[] args) {
+        //mientras no se introduzca 'exit' el juego se seguira ejecutando
+        //en cualquier momento,despues de seleccionar el modo de juego,se puede introducir 'exit' o 'restart'
         while(!input.equals("exit")){
+            //Instrucciones de inicio
             input="";
             System.out.println("Conecta 4 para ganar");
+            //selecciona modo de juego solitario o multijugador
             do{
                 System.out.println("Seleccionar modo de juego [[S]Solitario|[M]Multijugador]");
                 gameMode=new Scanner(System.in).next().toLowerCase().charAt(0);
@@ -138,6 +149,7 @@ public class Conecta4 {
                     cuadricula[i][j]=' ';
                 }
             }
+            //dinamica de turnos
             while(!hayGanador()&&!tableroLleno()&&!input.equals("exit")&&!input.equals("restart")){
                 mostrarCuadricula();
                 turno="Jugador 1";
@@ -145,6 +157,7 @@ public class Conecta4 {
                 if(nColumna!=0){
                     introduceFicha(j1,nColumna);
                 }
+                //despues de cada iteracion de turnos se hace la comprobacion de las condiciones que finalizarian el juego
                 if(!hayGanador()&&!tableroLleno()&&!input.equals("exit")&&!input.equals("restart")){
                     mostrarCuadricula();
                     turno="Jugador 2";
@@ -161,15 +174,19 @@ public class Conecta4 {
                     }
                 }
             }
+            //manejo de los posibles resultados
+            //si hay ganador, se anuncia
             if(hayGanador()){
                 System.out.println(turno+" es el ganador!!!");
                 mostrarCuadricula();
 
             }
+            //si el tablero se llena muestra un empate
             if(tableroLleno()){
                 System.out.println("Empate...");
                 mostrarCuadricula();
             }
+            //al acabar tienes la opcion de salir y volver a jugar
             while(!input.equals("exit")&&!input.equals("restart")){
                 System.out.println("[exit/restart]");
                 input = new Scanner(System.in).next();
@@ -177,6 +194,7 @@ public class Conecta4 {
         }    
     }
 
+    //muestra la matriz que almacena los valores de las fichas de manera elegante
     private static void mostrarCuadricula() {
         for (int i = 0;i<cuadricula.length;i++){
             System.out.println("+---+---+---+---+---+---+---+");
