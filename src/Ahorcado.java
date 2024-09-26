@@ -1,6 +1,3 @@
-import java.util.Random;
-import java.util.Scanner;
-
 public class Ahorcado {
     static boolean gameOver=false;
     public static void main(String[] args) {
@@ -16,7 +13,7 @@ public class Ahorcado {
             System.out.println("Tienes " + intentos +" intentos");
             System.out.println(letrasGuiones);
             System.out.println("Introduce una letra");
-            //Recogemos la letra introducida por consola y la pasamos a mayúsculas para hacer la comparacion
+            //Recogemos la letra introducida por consola y la pasamos a mayúsculas para hacer la comparación
             char letra = lector.next().toUpperCase().charAt(0);
             while(!esValido(letra)){
                 System.out.println("Input no valido");
@@ -30,7 +27,7 @@ public class Ahorcado {
                     algunaLetraAcertada = true; // si es igual continua el juego
                 }
             }
-            if(!algunaLetraAcertada) { // si no es igual pues decrementa los intentos y se dibuja una parte del muñeco
+            if(!algunaLetraAcertada) { // si no es igual pues decrementa los intentos y se dibuja una parte del ahorcado
                 System.out.println("No has acertado");
                 intentos--;
                 if(intentos==-1){
@@ -52,8 +49,8 @@ public class Ahorcado {
         lector.close();
     }
     
-    private static boolean esValido(char letra) {           //creamos un char array y condicionamos con if para admitir solo letras y evitar que se
-        boolean esta = false;                              // le reste intentos al jugador si ingresa un caracter de otro tipo.
+    private static boolean esValido(char letra) {  //creamos un char array y condicionamos con if para admitir solo letras y evitar que se
+        boolean esta = false;                     // le reste intentos al jugador si ingresa un caracter de otro tipo.
         char [] abecedario = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         for(int i=0;i<26;i++){
             if(letra==abecedario[i]){
@@ -246,6 +243,4 @@ public class Ahorcado {
     return false;
     }
 }
-    
-        
     
