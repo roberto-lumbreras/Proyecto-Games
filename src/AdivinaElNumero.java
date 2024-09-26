@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class AdivinaElNumero{
     
+    //metodo para verificar que el input es un numero entre 0 y 100 o [exit/restart]
     public static boolean esValido(String s){
         int n;
         if(s.equals("exit")||s.equals("restart")){
@@ -21,12 +22,17 @@ public class AdivinaElNumero{
         String numeroSecreto;
         String input = "";
         int numeroIntentos;
+        //mientras no se introduzca exit para salir del programa seguira ejecutandose
         while(!input.equals("exit")){
+            //genera el numero secreto entre 0 y 100
             numeroSecreto = String.valueOf (new Random().nextInt(0, 101));
+            //contador del numero de intentos para adivinar el numero
             numeroIntentos = 0;
             input = "";
+            //le pide input al usuario
             System.out.println("Juego de adivinar el numero");
             System.out.println("Introduzca un numero entre 0 y 100 ['exit' para salir/'restart' para reiniciar]");
+            //mientras no se introduzca restart, exit o se adivine el numero el programa seguira pidiendo numeros
             while(!input.equals(numeroSecreto)&&!input.equals("exit")&&!input.equals("restart")){
                 if(!input.equals("")){
                     System.out.println("Prueba otra vez ['exit' para salir/'restart' para reiniciar]");
@@ -37,12 +43,15 @@ public class AdivinaElNumero{
                     input = new Scanner(System.in).next();
                 }
                 if(!input.equals("exit")&&!input.equals("restart")){
+                    //si el input es un numero valido registra el intento 
                     numeroIntentos++;
+                    //da pistas al jugador si no ha acertado
                     if(Integer.valueOf(input)> Integer.valueOf(numeroSecreto)){
                         System.out.println("El numero secreto es mas pequeño");
                     }else if (Integer.valueOf(input)< Integer.valueOf(numeroSecreto)) {
                         System.out.println("El numero secreto es mas grande");
                     }else{
+                        //felicita al jugador por acertar el numero
                         System.out.println("Felicidades, has acertado!! Numero de intentos "+numeroIntentos+" ['exit' para salir/'restart' para reiniciar]");
                         input = new Scanner(System.in).next();
                         while(!(input.equals("exit")||input.equals("restart"))){
