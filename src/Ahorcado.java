@@ -7,6 +7,7 @@ public class Ahorcado {
     static String input="";
     static Scanner lector;
     public static void main(String[] args) {
+        input = "";
         while(!input.equals("exit")){
             gameOver=false;
             input = "";
